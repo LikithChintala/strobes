@@ -3,6 +3,7 @@ import { Form, SelectItem, Button, TextInput, FluidForm, Select } from 'carbon-c
 import ArrowRight32 from '@carbon/icons-react/lib/arrow--right/32';
 
 import { Auth } from 'aws-amplify';
+import { useHistory } from "react-router-dom";
 
 interface RegisterProps {
     buttonText: string
@@ -14,6 +15,7 @@ export default function Registerform({ buttonText }: RegisterProps) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [gender, setGender] = useState("")
+    const history = useHistory();
 
 
     const signUp = () => {
@@ -30,6 +32,8 @@ export default function Registerform({ buttonText }: RegisterProps) {
         })
             .then(() => {
                 console.log('Successfully signed up');
+                history.push("/login");
+
             })
             .catch((err) => console.log(`Error signing up: ${err}`))
     }
@@ -39,7 +43,7 @@ export default function Registerform({ buttonText }: RegisterProps) {
     return (
         <div>
             <Form>
-                <div className="bx--grid ">
+                <div className="bx--grid--full-width">
                     <div className="bx--row input-row__gap">
                         <div className="bx--col-lg-8 bx--col-md-4 bx--col-sm-2">
                             <FluidForm>
@@ -82,7 +86,7 @@ export default function Registerform({ buttonText }: RegisterProps) {
                         <div className="bx--col-lg-8 bx--col-md-4 bx--col-sm-2">
                             <FluidForm>
                                 <Select
-                                    style={{    minHeight: "4rem",padding: "2rem 1rem 0.8125rem"}}
+                                    style={{ minHeight: "4rem", padding: "2rem 1rem 0.8125rem" }}
                                     defaultValue="placeholder-item"
                                     id="select-1"
                                     invalidText="This is an invalid error message."
@@ -105,10 +109,10 @@ export default function Registerform({ buttonText }: RegisterProps) {
                                     id="test2"
                                     invalidText="A valid value is required"
                                     labelText="Eamil"
-                                    placeholder="Placeholder text" 
+                                    placeholder="Placeholder text"
                                     onChange={(e) => setEmail(e.target.value)}
 
-                                    />
+                                />
                             </FluidForm>
                         </div>
                         <div className="bx--col-lg-8 bx--col-md-4 bx--col-sm-2">
@@ -128,11 +132,12 @@ export default function Registerform({ buttonText }: RegisterProps) {
 
                     <div className="bx--row input-row__gap" style={{ marginTop: "1rem" }}>
                         <div className="bx--col-lg-16 bx--col-md-8 bx--col-sm-4">
-                            <Button kind="primary" renderIcon={ArrowRight32} onClick={signUp}>{buttonText}</Button>
+                            <Button kind="primary" className="button__fullwidth" renderIcon={ArrowRight32} onClick={signUp}>{buttonText}</Button>
                         </div>
                     </div>
 
                 </div> </Form>
+            <p style={{color:"#6F6F6F"}}>By creating a Strobes account, you consent to and fully accept our Privacy Policy. Terms of Service apply.</p>
         </div>
     )
 }
