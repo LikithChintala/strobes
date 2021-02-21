@@ -1,0 +1,20 @@
+$feature-flags: (
+  grid-columns-16: true,
+);
+
+@import 'carbon-components/scss/globals/scss/styles.scss';
+
+.input-row__gap{
+  margin-bottom: 1em;
+}
+
+svg.my-custom-class {
+  fill: #0F62FE;
+}
+
+.icon_text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0F62FE;
+}
